@@ -5,14 +5,13 @@ let numberOfWalkers = 200;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(240);
-  //declaring new walkers and placing them into a array (walkersArray)
+  //declaring new walkers and placing them into an array (walkersArray)
   for(let i = 0; i < numberOfWalkers; ++i){
    walkersOrigin = new Walkers();
    walkersArray[i] = walkersOrigin;
   }
 }
 function draw() {
-  //looping through walkersArray and calling the show and step function from the Walkers object
   for(let i = 0; i < numberOfWalkers; ++i){
     walkersArray[i].show();
     walkersArray[i].step();
@@ -31,7 +30,7 @@ let Walkers = function() {
     this.mean = windowWidth / 2;
     this.x = this.standardDeviation * this.num1 + this.mean;
     this.y = this.standardDeviation * this.num2 + this.mean;
-    //sets the colour value of the Walker
+    //sets the colour value of the Walkers
     this.setColour = function(red, green, blue, alpha) {
       this.redValue = red;
       this.greenValue = green;
