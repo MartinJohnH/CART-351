@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700');
+
+body{
+  margin: 0 auto;
+  width: 75vw;
+  padding: 0px;
+  background-color: #F0F0F0;
+}
+canvas {
+  position:fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+header{
+  margin: 50px 0px 25px 0px;
+}
+header h1, header h2, header h3{
+  margin: 0px;
+  font-family: 'Anton', Helvetica, sans-serif;
+  letter-spacing: 2px;
+  color: #E43F62;
+}
+header h1{
+  margin-top: 5px;
+  line-height: 65px;
+  font-size: 65px;
+}
+header h2{
+  font-size: 38px;
+}
+header hr{
+  margin: 7px 0px 7px 0px;
+  height: 4px;
+  background: #E43F62;
+  border: none;
+}
+header p.description{
+  margin: 0px;
+  font-size: 18px;
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  color: #E43F62;
+}
+main{
+  margin: 45px 0px 100px 0px;
+}
+main h2{
+  position: relative;
+  margin: 12px 0px 0px 30px;
+  font-family: 'Anton', Helvetica, sans-serif;
+  letter-spacing: 1px;
+  color: #E43F62;
+}
+.rows{
+  position: relative;
+  margin: 25px 0px 25px 0px;
+  padding: 2px 0px 2px 0px;
+  min-height: 60px;
+  background-color: #F6F6F6;
+  box-shadow: 2px 5px 10px #E3E3E3;
+  transition: all ;
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  transition: 0.5s;
+  display: block;
+  flex-flow: row wrap;
+}
+.row_container:hover .rows{
+  left: -25px;
+}
+.row_container:hover .rows > .horizontal_line {
+  background-color: #FF8F00;
+}
+.row_container:hover .rows > h2, .row_container:hover .rows > ul li, .row_container:hover .rows > ul li a {
+  color: #FF8F00;
+}
+.horizontal_line{
+  position: absolute;
+  top:0px;
+  width: 15px;
+  height: 100%;
+  background-color: #E43F62;
+}
+ul{
+  position: relative;
+  margin: 5px 40px 12px 40px;
+  flex-flow: row wrap;
+}
+li{
+  color: #E43F62;
+}
+a{
+  display: block;
+  padding: 2px;
+  font-family: 'Lora', serif;
+  color: #E43F62;
+}
+.disable :not(.rows){
+  cursor: not-allowed;
+  opacity: 0.5;
+}
