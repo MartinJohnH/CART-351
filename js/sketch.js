@@ -62,7 +62,7 @@ let Walkers = function() {
     };
 };
 //The following function was written by Meredith Dodge. Code found at: https://www.meredithdodge.com/2012/05/30/a-great-little-javascript-function-for-generating-random-gaussiannormalbell-curve-numbers
-//The function returns a generated random number following the Gaussian distribution
+//The function returns a generated random number following a Gaussian distribution
 Math.nrand = function() {
 	var x1, x2, rad, y1;
 	do {
