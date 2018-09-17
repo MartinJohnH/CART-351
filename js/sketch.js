@@ -40,13 +40,13 @@ let Walkers = function() {
     //declaring a random number between 1 and 15
     //modifying the value of 15, changes the probability of different colour Walkers being generated
     this.randomValue = Math.random() * (12 - 1) + 1;
-    //the colour of the Walker depends on random number
+    //the colour of the Walker depends on random number: (gray, red, orange)
     if(Math.round(this.randomValue) === 1 ){
       this.setColour(240, 240, 240, 222);
-    }else if(Math.round(this.randomValue) === 3){
+    }else if(Math.round(this.randomValue) === 2){
       this.setColour(240, 150, 175, 100);
-    }else if(Math.round(this.randomValue) === 4){
-      this.setColour(254, 197, 126, 100);
+    }else if(Math.round(this.randomValue) === 3){
+      this.setColour(254, 197, 126, 75);
     }
     //declaring the show function that will decide the look of a Walker, colour, size and positon
     Walkers.prototype.show = function() {
