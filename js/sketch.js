@@ -12,6 +12,7 @@ function setup() {
   }
 }
 function draw() {
+  //looping through walkersArray and calling the show and step functions
   for(let i = 0; i < numberOfWalkers; ++i){
     walkersArray[i].show();
     walkersArray[i].step();
@@ -30,7 +31,7 @@ let Walkers = function() {
     this.mean = windowWidth / 2;
     this.x = this.standardDeviation * this.num1 + this.mean;
     this.y = this.standardDeviation * this.num2 + this.mean;
-    //sets the colour value of the Walkers
+    //sets the colour value of the Walker
     this.setColour = function(red, green, blue, alpha) {
       this.redValue = red;
       this.greenValue = green;
@@ -40,11 +41,11 @@ let Walkers = function() {
     //declaring a random number between 1 and 15
     //modifying the value of 15, changes the probability of different colour Walkers being generated
     this.randomValue = Math.random() * (12 - 1) + 1;
-    //the colour of the Walker depends on random number: (gray, red, orange)
+    //the colour of the Walker depends on random number (gray, red, orange)
     if(Math.round(this.randomValue) === 1 ){
       this.setColour(240, 240, 240, 222);
     }else if(Math.round(this.randomValue) === 2){
-      this.setColour(240, 150, 175, 100);
+      this.setColour(240, 150, 175, 85);
     }else if(Math.round(this.randomValue) === 3){
       this.setColour(254, 197, 126, 75);
     }
