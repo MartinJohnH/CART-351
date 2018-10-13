@@ -21,7 +21,7 @@ function draw() {
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 }
-//declaring an object called  Walkers
+//declaring an object called Walkers
 let Walkers = function() {
     //declaring attributes
     this.grayValue = Math.random() * (240 - 215) + 215;
