@@ -1,0 +1,43 @@
+{
+  "Days":
+  [
+    {"Day": "Day1",
+    "Date": "Tue October 23, 2018",
+    "NumOfRides": 3,
+    "AverageTime" : "41 seconds",
+    "ElevatorRides": [
+      { "maxNumOfPeople": 2, "time": "58 seconds", "numOfStops": 2 },
+      { "maxNumOfPeople": 1, "time": "21 seconds", "numOfStops": 1 },
+      { "maxNumOfPeople": 1, "time": "45 seconds", "numOfStops": 1 }
+    ]
+    },
+    {"Day": "Day2",
+    "Date": "Wed October 24, 2018",
+    "NumOfRides": 2,
+    "AverageTime" : "52 seconds",
+    "ElevatorRides": [
+      { "maxNumOfPeople": 3, "time": "55 seconds", "numOfStops": 2 },
+      { "maxNumOfPeople": 1, "time": "48 seconds", "numOfStops": 1 }
+    ]
+    },
+    {"Day": "Day3",
+    "Date": "Thu October 25, 2018",
+    "NumOfRides": 2,
+    "AverageTime" : "79 seconds",
+    "ElevatorRides": [
+      { "maxNumOfPeople": 2, "time": "57 seconds", "totalFloors": 28 , "numOfStops": 2 },
+      { "maxNumOfPeople": 4, "time": "1 minute and 41 seconds", "numOfStops": 4 }
+    ]
+    },
+    {"Day": "Day4",
+    "Date": "Fri October 26, 2018",
+    "NumOfRides": 2,
+    "AverageTime" : "70 seconds",
+    "ElevatorRides": [
+      { "maxNumOfPeople": 1, "time": "43 seconds", "totalFloors": 28 , "numOfStops": 1 },
+      { "maxNumOfPeople": 3, "time": "1 minute and 36 seconds", "numOfStops": 3 }
+    ]
+    }
+
+   ]
+  }

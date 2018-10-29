@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="Martin-John Hearty"/>
+    <title>Elevator</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+    let loaded = false;
+    let dataCollected;
+    let userInput = "";
+      $(document).ready(function() {
+        setTimeout(func, 1000);
+        function func() {
+          $("#my_audio").get(0).play();
+          $(".elevator2")[0].style.display = "block";
+          $(".elevator")[0].style.display = "none";
+        }
+
+        $(".submit_button").click(function(event){
+          userInput = $(".input_field")[0].value;
+          if(!loaded){
+            $.getJSON('data.json',function(data) {
+              dataCollected = data;
+              loaded = true;
+              displayInfo(data);
+            })
+            .fail(function() {
+              console.log( "error" );
+            });
+          }
+          else{
+            displayInfo(dataCollected);
+          }
+         });
+
+        function displayInfo(data){
+          if(userInput.toLowerCase() === "day1" || userInput.toLowerCase() === "tue october 23, 2018" || userInput.toLowerCase() === "tuesday october 23, 2018"){
+            formatData(0);
+          }else if(userInput.toLowerCase() === "day2" || userInput.toLowerCase() === "wed october 24, 2018" || userInput.toLowerCase() === "wednesday october 24, 2018"){
+            formatData(1);
+          }else if(userInput.toLowerCase() === "day3" || userInput.toLowerCase() === "thu october 25, 2018" || userInput.toLowerCase() === "thursday october 25, 2018"){
+            formatData(2);
+          }else if(userInput.toLowerCase() === "day4" || userInput.toLowerCase() === "fri october 26, 2018" || userInput.toLowerCase() === "wednesday october 26, 2018"){
+            formatData(3);
+          }
+          else if(userInput.toLowerCase() === ""){
+            $(".text2").text("");
+          }else{
+            $(".text2").text("Invalid Input \n \n \n");
+            $(".text2").html($(".text2").html().replace(/\n/g,'<br/>'));
+          }
+          function formatData(day){
+            $(".text2").text(`${data.Days[day].Day} ${data.Days[day].Date} \n Number of elevator rides during the day: ${data.Days[day].NumOfRides} \n Average time spend in the elevator: ${data.Days[day].AverageTime}\n\n`);
+            for (let i = 0; i < data.Days[day].ElevatorRides.length; i++) {
+              $(".text2").append(`Ride ${(i+1)}:  number of people: ${data.Days[day].ElevatorRides[i].maxNumOfPeople}, time: ${data.Days[day].ElevatorRides[i].time}, number of stops: ${data.Days[day].ElevatorRides[i].numOfStops}\n`);
+            }
+            $(".text2").html($(".text2").html().replace(/\n/g,'<br/>'));
+          }
+        }
+
+
+      });
+    </script>
+  </head>
+  <body style="background-color: #e50026">
+    <iframe src="sounds/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+    <audio src="sounds/elevator.mp3" id="my_audio" style="display:none"></audio>
+    <div class="bg">
+      <div class="railing"></div>
+      <div class="molding"></div>
+      <div class="floor"></div>
+    </div>
+    <div class="doors">
+      <div class="right_door"></div>
+      <div class="left_door"></div>
+    </div>
+    <div class="container">
+      <div class="elevator" style="display: block; background-image: url(images/bg.png)"></div>
+    </div>
+    <div class="elevator2" style="display: none; background-image: url(images/bg2.png)"></div>
+
+    <div class="container2">
+      <label class="input_header">Elevator Statistics</label>
+      <input class="input_field" type="text" value="" placeholder="e.g. day1">
+      <p class="text">During four consecutive days (October 23rd to 26th, 2018), I recodered statistics on how often I used the elevator.</p>
+      <div class="submit_button">
+        <h3>Submit</h3>
+      </div>
+      <div class="output">
+        <p class="text2"></p>
+      </div>
+    </div>
+
+  </body>
+</html>
