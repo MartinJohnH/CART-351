@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> EXERCISE 2 </title>
+   <link rel="apple-touch-icon-precomposed" sizes="152x152" href="favicon/apple-touch-icon-152x152.png" />
+   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicon/apple-touch-icon-144x144.png" />
+   <link rel="apple-touch-icon-precomposed" sizes="76x76" href="favicon/apple-touch-icon-76x76.png" />
+   <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32" />
+   <link rel="icon" type="image/png" href="favicon/favicon-16x16.png" sizes="16x16" />
+  <style>
+  body{
+    margin:0;
+    padding:0;
+    overflow: hidden;
+  }
+  canvas{
+    background:black;
+    margin:0;
+    padding:0;
+  }
+  h1{
+    color: #ffffff;
+    position: relative;
+    margin: 10px;
+    margin-bottom: 0px;
+    font-family: Helvetica, sans-serif;
+    font-size: 130px;
+    z-index: 1;
+    -webkit-user-select: none;
+  }
+  h3{
+    color: #ffffff;
+    position: relative;
+    margin: 10px;
+    margin-top: 0px;
+    font-family: serif;
+    font-size: 30px;
+    z-index: 1;
+    -webkit-user-select: none;
+  }
+  .text{
+    position: absolute;
+    margin: 150px;
+
+  }
+  #button:hover{
+    opacity: 0.75;
+  }
+  </style>
+  <script>
+
+  window.onload = function(){
+    let canvas = document.getElementById('testCanvas');
+    let canvasContext = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    //let ellipse1 = new myRunningEllipse(canvas.width/2,canvas.height/2, 15,"#75787B", "#292C34");
+    const MAX_ELLIPSES = 20;
+    const MAX_BGELLIPSES = 20;
+    let ellipseList = [];
+    let bgEllipseList = [];
+    for (let i =0; i< MAX_BGELLIPSES;i++){
+      bgEllipseList.push(new bgEllipse((Math.random(0,1)*canvas.width),(Math.random(0,1)*canvas.height), 500, Math.floor(Math.random()*(75-12+1)+12),i, 33));
+    }
+    for (let i =0; i< MAX_ELLIPSES;i++){
+      ellipseList.push(new pulsatingEllipse((Math.random(0,1)*canvas.width),(Math.random(0,1)*canvas.height), Math.floor(Math.random()*(65-25+1)+25),Math.floor(Math.random()*(150-40+1)+40), "#292C34", (Math.floor(Math.random(0,1)*4))+1));
+    }
+    let timer = setInterval(pulse,1000);
+    let toggle = false;
+    function pulse(){
+      toggle = !toggle;
+    }
+    let timer2 = setInterval(pulse2, 300);
+    let toggle2 = false;
+    function pulse2(){
+      toggle2 = !toggle2;
+    }
+    let arrow = document.getElementById("arrow");
+    let button = document.getElementById("button");
+    let keyCliked = false;
+    let j = 10;
+    var myWindow;
+    let black_colour = 1;
+
+    document.body.onkeyup = function(e){
+      if(e.keyCode === 27){
+        keyCliked = true;
+        j = 10;
+      }
+    }
+    setInterval(textSize, 100);
+    let textTimer = false;
+    function textSize()
+    {
+      textTimer = !textTimer;
+    }
+
+    let header = document.getElementById("header");
+    let isMousePressedDown = true;
+    header.addEventListener('mousedown', (event) => {
+      isMousePressedDown = true;
+      requestAnimationFrame(runAni2);
+      function runAni2(){
+        if(isMousePressedDown){
+          if(textTimer){
+            header.style.fontSize = "150px";
+          }else{
+            header.style.fontSize = "130px";
+          }
+          requestAnimationFrame(runAni2);
+        }
+      }
+
+    });
+    header.addEventListener('mouseup', (event) => {
+      header.style.fontSize = "130px";
+      isMousePressedDown = false;
+    });
+
+    button.addEventListener('click', (event) => {
+        if(j >= 900){
+          keyCliked = true;
+          j = 10;
+          black_colour = black_colour*-1;
+          if(black_colour === -1){
+            document.body.style.filter = "invert(100%)";
+          }else{
+            document.body.style.filter = "invert(0%)";
+          }
+          return;
+        }
+        keyCliked = false;
+        let left = (screen.width);
+        let top = ((screen.height));
+        myWindow = window.open(`animated.html?|${j}|${black_colour}`, "myWindow", `width=${canvas.width-j},height=${canvas.height-j}, top= ${top} , left= ${left}`);
+        j+=100;
+        setTimeout(delay, 1500);
+        function delay() {
+          myWindow.close();
+          if(!keyCliked){
+            document.getElementById('button').click();
+          }
+        }
+    });
+
+    requestAnimationFrame(runAni);
+    function runAni(){
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i =0; i< MAX_BGELLIPSES;i++){
+        bgEllipseList[i].render();
+      }
+      for (let i =0; i< MAX_ELLIPSES;i++){
+        ellipseList[i].render(toggle);
+      }
+
+      requestAnimationFrame(runAni);
+    }
+
+    function pulsatingEllipse(x,y,r,c,s,gS){
+      this.xPos = x;
+      this.yPos = y;
+      this.radius = r;
+      this.fillColour = c;
+      this.stroleColour = s;
+      this.growthSpeed = gS;
+      this.render = function(toggle){
+        if(!toggle){
+          this.radius+=(this.growthSpeed+2)/10;
+        }else{
+          this.radius-=(this.growthSpeed+2)/10;
+        }
+        if(this.radius <= 0){
+          this.radius = 0.2;
+        }
+        if(!toggle2){
+          arrow.style.marginLeft = "-5px";
+          button.style.marginLeft = "+5px";
+        }else{
+          arrow.style.marginLeft = "0px";
+          button.style.marginLeft = "0px";
+        }
+        canvasContext.fillStyle = `rgba(${this.fillColour},${this.fillColour},${this.fillColour}, 0.5)`;
+        canvasContext.strokeStyle = this.stroleColour;
+        canvasContext.lineWidth = 4;
+        canvasContext.beginPath();
+        canvasContext.arc(this.xPos,this.yPos,this.radius,0, Math.PI * 2, true);
+        canvasContext.arc(this.xPos+800,this.yPos-70,this.radius,0, Math.PI * 2, true);
+        canvasContext.arc(this.xPos-515,this.yPos+85,this.radius,0, Math.PI * 2, true);
+        canvasContext.fill();
+        //canvasContext.stroke();
+        canvasContext.closePath();
+      }
+    }
+    function bgEllipse(x,y,r,c,id,turn, s){
+      this.xPos = x;
+      this.yPos = y;
+      this.radius = r;
+      this.fillColour = c;
+      this.strokeColour = s;
+      this.ellipseID = id;
+      this.isPressed =false;
+
+      this.fillOpacity = 0.4;
+
+      this.render =function(){
+        canvasContext.fillStyle = `rgba(${this.fillColour},${this.fillColour},${this.fillColour}, ${this.fillOpacity})`;
+        canvasContext.strokeStyle = this.strokeColour;
+        canvasContext.beginPath();
+        canvasContext.arc(this.xPos,this.yPos,this.radius,0,Math.PI * 2,true);
+        canvasContext.fill();
+        canvasContext.closePath();
+      }
+      this.hitTestDown =function(event){
+       //use distance formula
+       if(Math.sqrt(Math.pow((event.clientX-this.xPos),2) + Math.pow((event.clientY - this.yPos),2))< this.radius){
+         this.isPressed = true;
+         //console.log(`ellipse ${this.ellipseID} was pressed: ${this.isPressed} `);
+       }
+     }
+    }
+  } //on load
+
+  window.onresize = function(){
+    let canvas = document.getElementById('testCanvas');
+    let canvasContext = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  </script>
+</head>
+<body style="filter: invert(0%);">
+  <div class="text">
+    <h1> <span id="header" style="font-size: 130px;">Click Me</span> <span id="arrow" style="margin-left:0px; padding-right:10px;">➠</span><span id="button" style="margin-left:0px; cursor: pointer; -webkit-user-select: none;">◉</span></h1>
+    <h3>Homework Exercise#2 - Cart 351</h3>
+  </div>
+  <canvas id="testCanvas">
+</body>
+</html>
