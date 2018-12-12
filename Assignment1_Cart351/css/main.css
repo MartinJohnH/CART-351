@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0 auto;
   width: 75vw;
   padding: 0px;
@@ -10,45 +10,45 @@ canvas {
   left: 0;
   z-index: -1;
 }
-header{
+header {
   margin: 50px 0px 25px 0px;
 }
-header h1, header h2, header h3{
+header h1, header h2, header h3 {
   margin: 0px;
   font-family: 'Didot', serif;
   letter-spacing: 0px;
   color: #E43F62;
 }
-header h1{
+header h1 {
   line-height: 65px;
   font-size: 65px;
 }
-header h2{
+header h2 {
   font-size: 38px;
 }
-header hr{
+header hr {
   margin: 7px 0px 7px 0px;
   height: 3px;
   border: none;
   background: #E43F62;
 }
-header p.description{
+header p.description {
   margin: 0px;
   font-size: 18px;
   font-family: sans-serif;
   color: #E43F62;
 }
-main{
+main {
   margin: 45px 0px 100px 0px;
 }
-main h2{
+main h2 {
   position: relative;
   margin: 12px 0px 0px 30px;
   font-family: 'Didot', serif;
   letter-spacing: 0px;
   color: #E43F62;
 }
-.rows{
+.rows {
   position: relative;
   margin: 25px 0px 25px 0px;
   padding: 2px 0px 2px 0px;
@@ -61,7 +61,7 @@ main h2{
   display: block;
   flex-flow: row wrap;
 }
-.row_container:hover .rows{
+.row_container:hover .rows {
   left: -25px;
 }
 .row_container:hover .rows > .vertical_line {
@@ -70,33 +70,33 @@ main h2{
 .row_container:hover .rows > h2, .row_container:hover .rows > ul li, .row_container:hover .rows > ul li a {
   color: #FF8F00;
 }
-.vertical_line{
+.vertical_line {
   position: absolute;
   top:0px;
   width: 15px;
   height: 100%;
   background-color: #E43F62;
 }
-ul{
+ul {
   position: relative;
   margin: 5px 40px 12px 40px;
   flex-flow: row wrap;
 }
-li{
+li {
   color: #E43F62;
 }
-a{
+a {
   display: block;
   padding: 2px;
   font-family: sans-serif;
   color: #E43F62;
 }
-.disable :not(.rows){
+.disable :not(.rows) {
   cursor: not-allowed;
   opacity: 0.5;
 }
 @media only screen and (min-width: 768px) {
-  header h1{
+  header h1 {
     line-height: 82px;
     font-size: 82px;
   }
